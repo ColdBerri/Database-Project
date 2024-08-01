@@ -34,16 +34,21 @@ CREATE TABLE IF NOT EXISTS Registro_Contabile (
     mese_e_anno DATE PRIMARY KEY
 );
 
+CREATE TYPE tipo_prodotto AS ENUM ('farmaco', 'integratore', 'cosmetico', 'altro');
+
+CREATE TYPE assunzione AS ENUM ('Capsule', 'Pastiglie', 'Bustine', 'Crema', 'Endovena', 'Intermuscolare', 'altro'); -- Supposte?? (x)
+
 CREATE TABLE IF NOT EXISTS Prodotti (
     id_prodotto INT PRIMARY KEY,
     nome VARCHAR(64) NOT NULL,
     scadenza DATE NOT NULL,
-    tipo_assunzione VARCHAR(64) NOT NULL,
+    tipo_assunzione ASSUNZIONE
     quantita_confezione INT NOT NULL,
     prezzo DECIMAL(10, 2) NOT NULL,
-    tipo VARCHAR(64) NOT NULL,
+    tipo TIPO_PRODOTTO NOT NULL,
     necessita_ricetta BOOLEAN NOT NULL,
     eta_minima INT NOT NULL
+    --CHECK (eta_minima >= 0)
 );
 
 CREATE TABLE IF NOT EXISTS Dipendenti (
@@ -58,7 +63,8 @@ CREATE TABLE IF NOT EXISTS Dipendenti (
 );
 
 CREATE TABLE IF NOT EXISTS Ordini (
-    id_prodotto INT PRIMARY KEY,
+    id_ordine INT PRIMARY KEY,
+    id_prodotto INT NOT NULL,
     quantita INT NOT NULL,
     nome_fornitore VARCHAR(64) NOT NULL,
     prezzo_unitario DECIMAL(10, 2) NOT NULL,
@@ -73,6 +79,7 @@ CREATE TABLE IF NOT EXISTS Fornitori (
 );
 
 CREATE TABLE IF NOT EXISTS Bolla_Acquisto (
+    id_bolla INT PRIMARY KEY,
     nome_ditta VARCHAR(128) NOT NULL,
     quantita_prodotto INT NOT NULL,
     data_inizio_trasporto DATE NOT NULL,
@@ -94,20 +101,24 @@ CREATE TABLE IF NOT EXISTS Servizi_vari (
 );
 
 CREATE TABLE IF NOT EXISTS Prenotazioni (
+    id_prenotazione INT PRIMARY KEY,
     giorno DATE NOT NULL,
     orario TIME NOT NULL,
     nome_servizio VARCHAR(128) NOT NULL,
-    nome_cliente VARCHAR(64) NOT NULL
+    nome_cliente VARCHAR(64) NOT NULL,
+    FOREIGN KEY (nome_servizio) REFERENCES Servizi_vari(nome_servizio)
 );
 
 CREATE TABLE IF NOT EXISTS Clienti (
     nome VARCHAR(64) NOT NULL,
     cognome VARCHAR(64) NOT NULL,
     codice_fiscale VARCHAR(16) PRIMARY KEY,
-    eta INT NOT NULL
+    eta INT NOT NULL,
+    CHECK (eta >= 0)
 );
 
 CREATE TABLE IF NOT EXISTS Ricetta (
+    id_ricetta INT PRIMARY KEY,
     dottore VARCHAR(64) NOT NULL,
     nome_cliente VARCHAR(64) NOT NULL,
     codice_fiscale VARCHAR(16) NOT NULL,
