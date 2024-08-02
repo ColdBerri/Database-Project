@@ -1,0 +1,3 @@
+/Users/jeff/Desktop/Database-Project/c/build/CMakeFiles/db_farmacia.dir
+/Users/jeff/Desktop/Database-Project/c/build/CMakeFiles/edit_cache.dir
+/Users/jeff/Desktop/Database-Project/c/build/CMakeFiles/rebuild_cache.dir
