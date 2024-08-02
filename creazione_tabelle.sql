@@ -42,13 +42,20 @@ CREATE TABLE IF NOT EXISTS Prodotti (
     id_prodotto INT PRIMARY KEY,
     nome VARCHAR(64) NOT NULL,
     scadenza DATE NOT NULL,
-    tipo_assunzione ASSUNZIONE
+    tipo_assunzione ASSUNZIONE NOT NULL,
     quantita_confezione INT NOT NULL,
     prezzo DECIMAL(10, 2) NOT NULL,
     tipo TIPO_PRODOTTO NOT NULL,
     necessita_ricetta BOOLEAN NOT NULL,
     eta_minima INT NOT NULL
     --CHECK (eta_minima >= 0)
+);
+
+CREATE TABLE IF NOT EXISTS Turni (
+    id_turno INT PRIMARY KEY,
+    giorni VARCHAR(64) NOT NULL,
+    orario_inizio TIME NOT NULL,
+    orario_fine TIME NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Dipendenti (
@@ -73,7 +80,7 @@ CREATE TABLE IF NOT EXISTS Ordini (
 );
 
 CREATE TABLE IF NOT EXISTS Fornitori (
-    nome_ditta VARCHAR(128) NOT NULL,
+    nome_ditta VARCHAR(128) NOT NULL UNIQUE,
     p_iva VARCHAR(11) PRIMARY KEY,
     prodotto VARCHAR(64)
 );
@@ -92,7 +99,7 @@ CREATE TABLE IF NOT EXISTS Bolla_Acquisto (
 );
 
 CREATE TABLE IF NOT EXISTS Servizi_vari (
-    nome_servizio VARCHAR(128) NOT NULL,
+    nome_servizio VARCHAR(128) NOT NULL UNIQUE,
     giorno DATE NOT NULL,
     badge_farmacista INT NOT NULL,
     fascia_orario VARCHAR(64) NOT NULL,
@@ -155,13 +162,6 @@ CREATE TABLE IF NOT EXISTS Magazzino (
     data_prossimo_carico DATE,
     PRIMARY KEY (id_prodotto, fila, posto),
     FOREIGN KEY (id_prodotto) REFERENCES Prodotti(id_prodotto)
-);
-
-CREATE TABLE IF NOT EXISTS Turni (
-    id_turno INT PRIMARY KEY,
-    giorni VARCHAR(64) NOT NULL,
-    orario_inizio TIME NOT NULL,
-    orario_fine TIME NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Bugiardino (
