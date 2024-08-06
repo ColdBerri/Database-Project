@@ -47,9 +47,9 @@ CREATE TABLE IF NOT EXISTS Prodotti (
     prezzo DECIMAL(10, 2) NOT NULL,
     tipo TIPO_PRODOTTO NOT NULL,
     necessita_ricetta BOOLEAN NOT NULL,
-    eta_minima INT NOT NULL
+    eta_minima INT NOT NULL 
     --CHECK (eta_minima >= 0)
-);
+);--dati ok
 
 CREATE TABLE IF NOT EXISTS Turni (
     id_turno INT PRIMARY KEY,
@@ -77,13 +77,13 @@ CREATE TABLE IF NOT EXISTS Ordini (
     prezzo_unitario DECIMAL(10, 2) NOT NULL,
     data_arrivo DATE NOT NULL,
     FOREIGN KEY (id_prodotto) REFERENCES Prodotti(id_prodotto)
-);
+);--dati ok
 
 CREATE TABLE IF NOT EXISTS Fornitori (
-    nome_ditta VARCHAR(128) NOT NULL UNIQUE,
+    nome_ditta VARCHAR(128) NOT NULL, --ho tolto unique perchè una stessa ditta può produrre più prodotti
     p_iva VARCHAR(11) PRIMARY KEY,
     prodotto VARCHAR(64)
-);
+);--dati ok
 
 CREATE TABLE IF NOT EXISTS Bolla_Acquisto (
     id_bolla INT PRIMARY KEY,
@@ -156,18 +156,18 @@ CREATE TABLE IF NOT EXISTS Registro_Vendite(
 CREATE TABLE IF NOT EXISTS Magazzino (
     id_prodotto INT NOT NULL,
     fila INT NOT NULL,
-    posto INT NOT NULL,
+    posto VARCHAR(32) NOT NULL,
     numero_restanti INT NOT NULL,
     numero_minimo INT NOT NULL,
     data_prossimo_carico DATE,
-    PRIMARY KEY (id_prodotto, fila, posto),
+    PRIMARY KEY (id_prodotto) --non andavano bene fila e posto perchè è la loro combinazione ad essere unica ma non i sngoli attributi
     FOREIGN KEY (id_prodotto) REFERENCES Prodotti(id_prodotto)
-);
+);--dati ok
 
 CREATE TABLE IF NOT EXISTS Bugiardino (
     id_prodotto INT PRIMARY KEY,
     effetti_collaterali VARCHAR(256),
-    isfans BOOLEAN NOT NULL,
-    modalita_assunzione VARCHAR(128) NOT NULL,
+    isfans BOOLEAN NOT NULL, --che cazz vuol dire??
+    --modalita_assunzione VARCHAR(128) NOT NULL,--non serve questa ridondanza perchè gia scritto nella tabella prodotti
     FOREIGN KEY (id_prodotto) REFERENCES Prodotti(id_prodotto)
-);
+);--dati quasi ok 
