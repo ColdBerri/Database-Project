@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS Contratti (
     tipologia_contratto VARCHAR(64) NOT NULL,
     inizio_contratto DATE NOT NULL,
     termine_contratto DATE
-);
+); --dati ok
 
 CREATE TABLE IF NOT EXISTS Registro_Contabile (
     spese_ordine DECIMAL(10, 2) NOT NULL,
@@ -34,9 +34,9 @@ CREATE TABLE IF NOT EXISTS Registro_Contabile (
     mese_e_anno DATE PRIMARY KEY
 );
 
-CREATE TYPE tipo_prodotto AS ENUM ('farmaco', 'integratore', 'cosmetico', 'altro');
+CREATE TYPE tipo_prodotto AS ENUM ('farmaco', 'integratore', 'cosmetico', 'attrezzatura medica', 'altro');
 
-CREATE TYPE assunzione AS ENUM ('Capsule', 'Pastiglie', 'Bustine', 'Crema', 'Endovena', 'Intermuscolare', 'altro'); -- Supposte?? (x)
+CREATE TYPE assunzione AS ENUM ('Capsule', 'Pastiglie', 'Bustine', 'Pomate', 'Endovena', 'Intermuscolare', 'Supposta'); 
 
 CREATE TABLE IF NOT EXISTS Prodotti (
     id_prodotto INT PRIMARY KEY,
@@ -56,18 +56,18 @@ CREATE TABLE IF NOT EXISTS Turni (
     giorni VARCHAR(64) NOT NULL,
     orario_inizio TIME NOT NULL,
     orario_fine TIME NOT NULL
-);
+); --dati ok
 
 CREATE TABLE IF NOT EXISTS Dipendenti (
     badge INT PRIMARY KEY,
     numero_contratto INT NOT NULL,
     certificazione VARCHAR(128) NOT NULL,
     ruolo VARCHAR(64) NOT NULL,
-    posizione VARCHAR(64) NOT NULL,
+    --posizione VARCHAR(64) NOT NULL, non capivo cosa fosse :)
     id_turno INT NOT NULL,
     FOREIGN KEY (numero_contratto) REFERENCES Contratti(numero_contratto),
     FOREIGN KEY (id_turno) REFERENCES Turni(id_turno)
-);
+); --dati ok
 
 CREATE TABLE IF NOT EXISTS Ordini (
     id_ordine INT PRIMARY KEY,
