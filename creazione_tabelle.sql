@@ -35,21 +35,25 @@ CREATE TABLE IF NOT EXISTS Registro_Contabile (
     mese_e_anno DATE PRIMARY KEY
 ); -- da rivedere 
 
+DROP TYPE IF EXISTS tipo_prodotto CASCADE;
+
+DROP TYPE IF EXISTS assunzione CASCADE;
+
 CREATE TYPE tipo_prodotto AS ENUM ('farmaco', 'integratore', 'cosmetico', 'attrezzatura medica', 'altro');
 
-CREATE TYPE assunzione AS ENUM ('Capsule', 'Pastiglie', 'Bustine', 'Pomate', 'Endovena', 'Intermuscolare', 'Supposta'); 
+CREATE TYPE assunzione AS ENUM ('Liquido','Gocce','Capsule', 'Pastiglie', 'Bustine', 'Pomate', 'Endovena', 'Intramuscolare', 'Supposta'); 
 
 CREATE TABLE IF NOT EXISTS Prodotti (
     id_prodotto INT PRIMARY KEY,
     nome VARCHAR(64) NOT NULL,
     scadenza DATE NOT NULL,
-    tipo_assunzione ASSUNZIONE NOT NULL,
+    tipo_assunzione ASSUNZIONE,
     quantita_confezione INT NOT NULL,
     prezzo DECIMAL(10, 2) NOT NULL,
     tipo TIPO_PRODOTTO NOT NULL,
     necessita_ricetta BOOLEAN NOT NULL,
-    eta_minima INT NOT NULL 
-    --CHECK (eta_minima >= 0)
+    eta_minima INT, 
+    CHECK (eta_minima >= 0)
 );--dati ok
 
 CREATE TABLE IF NOT EXISTS Turni (
@@ -88,7 +92,7 @@ CREATE TABLE IF NOT EXISTS Fornitori (
 
 CREATE TABLE IF NOT EXISTS Bolla_Acquisto (
     id_bolla INT PRIMARY KEY,
-    nome_ditta VARCHAR(128) NOT NULL,
+    p_iva VARCHAR(11) NOT NULL,
     quantita_prodotto INT NOT NULL,
     data_inizio_trasporto DATE NOT NULL,
     vettore VARCHAR(64) NOT NULL,
@@ -96,8 +100,8 @@ CREATE TABLE IF NOT EXISTS Bolla_Acquisto (
     causale_trasporto VARCHAR(64) NOT NULL,
     data_documento DATE NOT NULL,
     FOREIGN KEY (id_prodotto) REFERENCES Prodotti(id_prodotto),
-    FOREIGN KEY (nome_ditta) REFERENCES Fornitori(nome_ditta)
-);--da rivedere
+    FOREIGN KEY (p_iva) REFERENCES Fornitori(p_iva) --ok
+);--da rivedere, ho preso e copiato i dati di una bolla vera
 
 CREATE TABLE IF NOT EXISTS Servizi_vari (
     nome_servizio VARCHAR(128) NOT NULL UNIQUE,
@@ -162,14 +166,14 @@ CREATE TABLE IF NOT EXISTS Magazzino (
     numero_restanti INT NOT NULL,
     numero_minimo INT NOT NULL,
     data_prossimo_carico DATE,
-    PRIMARY KEY (id_prodotto) --non andavano bene fila e posto perchè è la loro combinazione ad essere unica ma non i sngoli attributi
+    PRIMARY KEY (id_prodotto), --non andavano bene fila e posto perchè è la loro combinazione ad essere unica ma non i sngoli attributi
     FOREIGN KEY (id_prodotto) REFERENCES Prodotti(id_prodotto)
 );--dati ok
 
 CREATE TABLE IF NOT EXISTS Bugiardino (
     id_prodotto INT PRIMARY KEY,
     effetti_collaterali VARCHAR(256),
-    isfans BOOLEAN NOT NULL, --che cazz vuol dire??
-    --modalita_assunzione VARCHAR(128) NOT NULL,--non serve questa ridondanza perchè gia scritto nella tabella prodotti
+    isfans BOOLEAN NOT NULL, --che cazz vuol dire?? farmaco steroideo o no
+    periodicita_assunzione VARCHAR(128) NOT NULL,--non serve questa ridondanza perchè gia scritto nella tabella prodotti,es. antibiotico da assumere ogni 8 ore ecc.
     FOREIGN KEY (id_prodotto) REFERENCES Prodotti(id_prodotto)
 );--dati quasi ok 

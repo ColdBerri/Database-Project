@@ -15,26 +15,8 @@ INSERT INTO Contratti(nome,cognome,numero_contratto,codice_fiscale,data_nascita,
 ('Serena','Rosa',14,'RSASRN93S01H501K','1993-11-01','determinato','2017-02-01','2025-01-31'),
 ('Giorgio','Verde',15,'VRDGGR91A01H501X','1991-01-01','indeterminato','2018-03-01',NULL);
 
-
-INSERT INTO Dipendenti(badge,numero_contratto,certificazione,ruolo,id_turno)VALUES
-(1001,1,'AbilitazionealCommercio','responsabile',101),
-(1002,2,'CertificazionediFarmacista','farmacista',102),
-(1003,3,'CertificazionediTecnico','tecnicodilaboratorio',103),
-(1004,4,'CertificazionediTecnico','tecnicodilaboratorio',104),
-(1005,5,'CertificazionediFarmacista','farmacista',105),
-(1006,6,'AbilitazionealCommercio','responsabile',106),
-(1007,7,'CertificazionediFarmacista','farmacista',107),
-(1008,8,'CertificazionediTecnico','tecnicodilaboratorio',108),
-(1009,9,'CertificazionediFarmacista','farmacista',109),
-(1010,10,'CertificazionediTecnico','tecnicodilaboratorio',110),
-(1011,11,'CertificazionediFarmacista','farmacista',111),
-(1012,12,'CertificazionediTecnico','tecnicodilaboratorio',112),
-(1013,13,'CertificazionediFarmacista','farmacista',113),
-(1014,14,'CertificazionediTecnico','tecnicodilaboratorio',114),
-(1015,15,'CertificazionediFarmacista','farmacista',115);
-
 INSERT INTO Turni(id_turno,giorni,orario_inizio,orario_fine)VALUES
-(101,'lunedì-giovedì','08:00:00','12:00:00'),
+(1,'lunedì-giovedì','08:00:00','12:00:00'),
 (102,'venerdì-lunedì','14:00:00','18:00:00'),
 (103,'lunedì-giovedì','08:00:00','12:00:00'),--Tecnicodilaboratorio
 (104,'martedì-venerdì','14:00:00','18:00:00'),--Tecnicodilaboratorio
@@ -50,63 +32,87 @@ INSERT INTO Turni(id_turno,giorni,orario_inizio,orario_fine)VALUES
 (114,'mercoledì-venerdì','14:00:00','18:00:00'),--Tecnicodilaboratorio
 (115,'lunedì-venerdì','08:00:00','12:00:00');
 
+INSERT INTO Dipendenti(badge,numero_contratto,certificazione,ruolo,id_turno)VALUES
+(1001,1,'AbilitazionealCommercio','responsabile',1),
+(1002,2,'CertificazionediFarmacista','farmacista',102),
+(1003,3,'CertificazionediTecnico','tecnicodilaboratorio',103),
+(1004,4,'CertificazionediTecnico','tecnicodilaboratorio',104),
+(1005,5,'CertificazionediFarmacista','farmacista',105),
+(1006,6,'AbilitazionealCommercio','responsabile',106),
+(1007,7,'CertificazionediFarmacista','farmacista',107),
+(1008,8,'CertificazionediTecnico','tecnicodilaboratorio',108),
+(1009,9,'CertificazionediFarmacista','farmacista',109),
+(1010,10,'CertificazionediTecnico','tecnicodilaboratorio',110),
+(1011,11,'CertificazionediFarmacista','farmacista',111),
+(1012,12,'CertificazionediTecnico','tecnicodilaboratorio',112),
+(1013,13,'CertificazionediFarmacista','farmacista',113),
+(1014,14,'CertificazionediTecnico','tecnicodilaboratorio',114),
+(1015,15,'CertificazionediFarmacista','farmacista',115);
 
-INSERT INTO Prodotti(id_prodotto,nome,scadenza,tipo_di_assunzione,quantità_confezione,prezzo,tipo_prodotto,necessità_ricetta,età_minima)VALUES
-(2001,'Aspirina','2025-06-15','Pastiglie',12,4.50,'farmaco',FALSE,12),
-(2002,'Paracetamolo','2025-08-20','Capsule',16,5.00,'farmaco',FALSE,3),
-(2003,'Ibuprofene','2025-09-30','Pastiglie',16,6.00,'farmaco',TRUE,12),
-(2004,'CremaIdratante','2026-01-15','Pomate',1,12.00,'cosmetico',FALSE,NULL),
-(2005,'VitaminaC','2025-12-10','Bustine',8,8.00,'integratore',FALSE,NULL),
-(2006,'TermometroDigitale','2030-01-01',NULL,1,25.00,'attrezzaturamedica',FALSE,NULL),
-(2007,'Amoxicillina','2025-11-25','Capsule',12,10.00,'farmaco',TRUE,12),
-(2008,'CremaSolare','2025-07-01','Pomate',1,15.00,'cosmetico',FALSE,NULL),
-(2009,'IntegratorediFerro','2026-03-20','Capsule',32,18.00,'integratore',FALSE,NULL),
-(2010,'Insulina','2026-05-30','Endovena',1,20.00,'farmaco',TRUE,12),
-(2011,'PomataAntibiotica','2026-04-10','Pomate',1,7.50,'farmaco',TRUE,NULL),
-(2012,'Multivitaminico','2026-06-25','Capsule',32,16.00,'integratore',FALSE,NULL),
-(2013,'SuppostaGlicerina','2026-02-15','Supposta',8,5.50,'farmaco',FALSE,3),
-(2014,'Cerotto','2029-12-31',NULL,1,3.00,'attrezzaturamedica',FALSE,NULL),
-(2015,'Stampelle','2030-01-01',NULL,2,30.00,'attrezzaturamedica',FALSE,NULL),
-(2016,'Atenololo','2026-02-10','Pastiglie',16,15.00,'farmaco',TRUE,12),--Farmacoperilcuore
-(2017,'Metoprololo','2026-03-15','Pastiglie',16,12.00,'farmaco',TRUE,12),--Farmacoperilcuore
-(2018,'Clotrimazolo','2025-11-30','Pomate',1,6.00,'farmaco',FALSE,NULL),--Farmacoperlapelle
-(2019,'Idrocortisone','2026-04-20','Pomate',1,8.00,'farmaco',TRUE,NULL),--Farmacoperlapelle
-(2020,'Fluoxetina','2025-12-15','Capsule',16,25.00,'farmaco',TRUE,12),--Psicofarmaco
-(2021,'Sertralina','2026-05-10','Capsule',16,30.00,'farmaco',TRUE,12),--Psicofarmaco
-(2022,'Diazepam','2026-01-25','Pastiglie',16,20.00,'farmaco',TRUE,12),--Psicofarmaco
-(2023,'Lorazepam','2026-02-05','Pastiglie',16,18.00,'farmaco',TRUE,12),--Psicofarmaco
-(2024,'AcidoSalicilico','2026-07-01','Pomate',1,10.00,'farmaco',FALSE,NULL),--Farmacoperlapelle
-(2025,'Benzilpenicillina','2025-10-10','Intramuscolare',1,22.00,'farmaco',TRUE,NULL),
-(2026,'TermometroaMercurio','2030-01-01',NULL,1,15.00,'attrezzaturamedica',FALSE,NULL),
-(2027,'SiringaSterile','2030-01-01',NULL,1,1.50,'attrezzaturamedica',FALSE,NULL),
-(2028,'CuscinettoOrtopedico','2030-01-01',NULL,1,45.00,'attrezzaturamedica',FALSE,NULL),
-(2029,'Amoxicillina+AcidoClavulanico','2026-05-01','Capsule',12,12.00,'farmaco',TRUE,12),
-(2030,'CalcioCarbonato','2026-06-15','Pastiglie',32,10.00,'integratore',FALSE,NULL),
-(2031,'VitaminaD3','2025-08-30','Capsule',32,20.00,'integratore',FALSE,NULL),
-(2032,'PastaLenitiva','2026-01-20','Pomate',1,9.00,'cosmetico',FALSE,NULL),
-(2033,'GocceOculari','2025-10-15','Bustine',8,7.00,'farmaco',FALSE,NULL),
-(2034,'Bacitracina','2026-03-10','Pomate',1,6.00,'farmaco',TRUE,NULL),
-(2035,'MagnesioCitrato','2026-04-05','Bustine',8,12.00,'integratore',FALSE,NULL);
+INSERT INTO Prodotti(id_prodotto, nome, scadenza, tipo_assunzione, quantita_confezione, prezzo, tipo, necessita_ricetta, eta_minima) VALUES
+(2001, 'Aspirina', '2025-06-15', 'Pastiglie', 12, 4.50, 'farmaco', FALSE, 12),
+(2002, 'Paracetamolo', '2025-08-20', 'Capsule', 16, 5.00, 'farmaco', FALSE, 3),
+(2003, 'Ibuprofene', '2025-09-30', 'Pastiglie', 16, 6.00, 'farmaco', TRUE, 12),
+(2004, 'CremaIdratante', '2026-01-15', 'Pomate', 1, 12.00, 'cosmetico', FALSE, NULL),
+(2005, 'VitaminaC', '2025-12-10', 'Bustine', 8, 8.00, 'integratore', FALSE, NULL),
+(2006, 'TermometroDigitale', '2030-01-01', NULL, 1, 25.00, 'attrezzatura medica', FALSE, NULL),
+(2007, 'Amoxicillina', '2025-11-25', 'Capsule', 12, 10.00, 'farmaco', TRUE, 12),
+(2008, 'CremaSolare', '2025-07-01', 'Pomate', 1, 15.00, 'cosmetico', FALSE, NULL),
+(2009, 'IntegratorediFerro', '2026-03-20', 'Capsule', 32, 18.00, 'integratore', FALSE, NULL),
+(2010, 'Insulina', '2026-05-30', 'Endovena', 1, 20.00, 'farmaco', TRUE, 12),
+(2011, 'PomataAntibiotica', '2026-04-10', 'Pomate', 1, 7.50, 'farmaco', TRUE, NULL),
+(2012, 'Multivitaminico', '2026-06-25', 'Capsule', 32, 16.00, 'integratore', FALSE, NULL),
+(2013, 'SuppostaGlicerina', '2026-02-15', 'Supposta', 8, 5.50, 'farmaco', FALSE, 3),
+(2014, 'Cerotto', '2029-12-31', NULL, 1, 3.00, 'attrezzatura medica', FALSE, NULL),
+(2015, 'Stampelle', '2030-01-01', NULL, 2, 30.00, 'attrezzatura medica', FALSE, NULL),
+(2016, 'Atenololo', '2026-02-10', 'Pastiglie', 16, 15.00, 'farmaco', TRUE, 12), -- Farmaco per il cuore
+(2017, 'Metoprololo', '2026-03-15', 'Pastiglie', 16, 12.00, 'farmaco', TRUE, 12), -- Farmaco per il cuore
+(2018, 'Clotrimazolo', '2025-11-30', 'Pomate', 1, 6.00, 'farmaco', FALSE, NULL), -- Farmaco per la pelle
+(2019, 'Idrocortisone', '2026-04-20', 'Pomate', 1, 8.00, 'farmaco', TRUE, NULL), -- Farmaco per la pelle
+(2020, 'Fluoxetina', '2025-12-15', 'Capsule', 16, 25.00, 'farmaco', TRUE, 12), -- Psicofarmaco
+(2021, 'Sertralina', '2026-05-10', 'Capsule', 16, 30.00, 'farmaco', TRUE, 12), -- Psicofarmaco
+(2022, 'Diazepam', '2026-01-25', 'Pastiglie', 16, 20.00, 'farmaco', TRUE, 12), -- Psicofarmaco
+(2023, 'Lorazepam', '2026-02-05', 'Pastiglie', 16, 18.00, 'farmaco', TRUE, 12), -- Psicofarmaco
+(2024, 'AcidoSalicilico', '2026-07-01', 'Pomate', 1, 10.00, 'farmaco', FALSE, NULL), -- Farmaco per la pelle
+(2025, 'Benzilpenicillina', '2025-10-10', 'Intramuscolare', 1, 22.00, 'farmaco', TRUE, NULL),
+(2026, 'TermometroaMercurio', '2030-01-01', NULL, 1, 15.00, 'attrezzatura medica', FALSE, NULL),
+(2027, 'SiringaSterile', '2030-01-01', NULL, 1, 1.50, 'attrezzatura medica', FALSE, NULL),
+(2028, 'CuscinettoOrtopedico', '2030-01-01', NULL, 1, 45.00, 'attrezzatura medica', FALSE, NULL),
+(2029, 'Amoxicillina+AcidoClavulanico', '2026-05-01', 'Capsule', 12, 12.00, 'farmaco', TRUE, 12),
+(2030, 'CalcioCarbonato', '2026-06-15', 'Pastiglie', 32, 10.00, 'integratore', FALSE, NULL),
+(2031, 'VitaminaD3', '2025-08-30', 'Capsule', 32, 20.00, 'integratore', FALSE, NULL),
+(2032, 'PastaLenitiva', '2026-01-20', 'Pomate', 1, 9.00, 'cosmetico', FALSE, NULL),
+(2033, 'GocceOculari', '2025-10-15', 'Bustine', 8, 7.00, 'farmaco', FALSE, NULL),
+(2034, 'Bacitracina', '2026-03-10', 'Pomate', 1, 6.00, 'farmaco', TRUE, NULL),
+(2035, 'MagnesioCitrato', '2026-04-05', 'Bustine', 8, 12.00, 'integratore', FALSE, NULL),
+(2201, 'Collirio', '2025-11-01', 'Gocce', 1, 5.00, 'farmaco', FALSE, NULL),
+(2202, 'CremaAnti-infiammatoria', '2025-12-01', 'Pomate', 1, 10.00, 'farmaco', TRUE, NULL),
+(2203, 'SciroppoTosse', '2026-01-01', 'Liquido', 1, 8.00, 'farmaco', FALSE, 6),
+(2204, 'Lassativo', '2026-02-01', 'Capsule', 10, 7.00, 'farmaco', FALSE, 12),
+(2205, 'Antistaminico', '2026-03-01', 'Capsule', 20, 15.00, 'farmaco', TRUE, 12),
+(2206, 'GocceNasaline', '2026-04-01', 'Gocce', 1, 6.00, 'farmaco', FALSE, NULL);
 
-INSERT INTO Bugiardino(id_prodotto,effetti_collaterali)VALUES
-(2001,'Nausea,maldistomaco,sanguinamentogastrico'),
-(2003,'Nausea,vertigini,malditesta'),
-(2007,'Nausea,diarrea,reazioniallergiche'),
-(2010,'Ipoglicemia,reazioniallergiche,irritazionenelsitodiiniezione'),
-(2011,'Irritazionecutanea,bruciore,prurito'),
-(2016,'Affaticamento,vertigini,bradicardia'),
-(2017,'Vertigini,affaticamento,depressione'),
-(2018,'Irritazionecutanea,prurito'),
-(2019,'Irritazionecutanea,bruciore,prurito'),
-(2020,'Nausea,insonnia,ansia'),
-(2021,'Nausea,diarrea,insonnia'),
-(2022,'Sonno,vertigini,debolezzamuscolare'),
-(2023,'Sedazione,vertigini,perditadiequilibrio'),
-(2024,'Irritazionecutanea,arrossamento'),
-(2025,'Reazioniallergiche,dolorenelsitodiiniezione'),
-(2029,'Nausea,diarrea,reazioniallergiche'),
-(2033,'Irritazioneoculare,bruciore,arrossamento'),
-(2034,'Irritazionecutanea,arrossamento,prurito');
+
+INSERT INTO Bugiardino(id_prodotto, effetti_collaterali, isfans, periodicita_assunzione) VALUES
+(2001, 'Nausea, mal di stomaco, sanguinamento gastrico', TRUE, 'Ogni 6 ore'),
+(2003, 'Nausea, vertigini, mal di testa', FALSE, 'Ogni 8 ore'),
+(2007, 'Nausea, diarrea, reazioni allergiche', TRUE, 'Ogni 12 ore'),
+(2010, 'Ipoglicemia, reazioni allergiche, irritazione nel sito di iniezione', FALSE, 'Una volta al giorno'),
+(2011, 'Irritazione cutanea, bruciore, prurito', TRUE, 'Due volte al giorno'),
+(2016, 'Affaticamento, vertigini, bradicardia', FALSE, 'Ogni 12 ore'),
+(2017, 'Vertigini, affaticamento, depressione', TRUE, 'Una volta al giorno'),
+(2018, 'Irritazione cutanea, prurito', FALSE, 'Ogni 8 ore'),
+(2019, 'Irritazione cutanea, bruciore, prurito', TRUE, 'Due volte al giorno'),
+(2020, 'Nausea, insonnia, ansia', FALSE, 'Una volta al giorno'),
+(2021, 'Nausea, diarrea, insonnia', TRUE, 'Ogni 6 ore'),
+(2022, 'Sonno, vertigini, debolezza muscolare', FALSE, 'Due volte al giorno'),
+(2023, 'Sedazione, vertigini, perdita di equilibrio', TRUE, 'Una volta al giorno'),
+(2024, 'Irritazione cutanea, arrossamento', FALSE, 'Ogni 8 ore'),
+(2025, 'Reazioni allergiche, dolore nel sito di iniezione', TRUE, 'Ogni 12 ore'),
+(2029, 'Nausea, diarrea, reazioni allergiche', FALSE, 'Ogni 6 ore'),
+(2033, 'Irritazione oculare, bruciore, arrossamento', TRUE, 'Ogni 8 ore'),
+(2034, 'Irritazione cutanea, arrossamento, prurito', FALSE, 'Due volte al giorno');
+
 
 INSERT INTO Magazzino(id_prodotto,fila,posto,numero_restanti,numero_minimo,data_prossimo_carico)VALUES
 (2001,1,'A',5,10,'2024-09-05'),
@@ -146,7 +152,7 @@ INSERT INTO Magazzino(id_prodotto,fila,posto,numero_restanti,numero_minimo,data_
 (2035,12,'B',7,5,NULL);
 
 
-INSERT INTO Ordini(id_ordine,id_prodotto,quantità,nome_fornitore,prezzo_unitario,data_arrivo)VALUES
+INSERT INTO Ordini(id_ordine,id_prodotto,quantita,nome_fornitore,prezzo_unitario,data_arrivo)VALUES
 (301,2001,6,'FarmaceuticiS.p.A.',12.50,'2024-09-05'),
 (302,2003,8,'SaluteeBenessereS.r.l.',8.90,'2024-09-07'),
 (303,2007,7,'DistribuzioneMedicaS.r.l.',5.75,'2024-09-10'),
@@ -169,78 +175,78 @@ INSERT INTO Ordini(id_ordine,id_prodotto,quantità,nome_fornitore,prezzo_unitari
 (319,2205,2,'FarmaceuticiS.p.A.',32.10,'2024-09-20'),
 (320,2206,1,'SaluteeBenessereS.r.l.',18.50,'2024-09-22');
 
-INSERT INTO Fornitori(nome_ditta,p_iva,prodotto)VALUES
-('FarmaceuticiS.p.A.','01234567890','Aspirina'),
-('SaluteeBenessereS.r.l.','09876543210','Paracetamolo'),
-('DistribuzioneMedicaS.r.l.','11223344556','Ibuprofene'),
+INSERT INTO Fornitori(nome_ditta, p_iva, prodotto) VALUES
+('FarmaceuticiS.p.A.','31234567891','Aspirina'),
+('SaluteeBenessereS.r.l.','09876523410','Paracetamolo'),
+('DistribuzioneMedicaS.r.l.','23344556','Ibuprofene'),
 ('FarmaciGlobaliS.p.A.','66778899001','Amoxicillina'),
 ('FornitureSanitarieS.p.A.','22334455667','Cetirizina'),
 ('MedicaProS.r.l.','33445566778','Simvastatina'),
-('FarmaceuticiS.p.A.','01234567890','Omeprazolo'),
-('SaluteeBenessereS.r.l.','09876543210','Pantoprazolo'),
+('FarmaceuticiS.p.A.','98765432101','Omeprazolo'),
+('SaluteeBenessereS.r.l.','09876543211','Pantoprazolo'),
 ('DistribuzioneMedicaS.r.l.','11223344556','TermometroDigitale'),
-('FarmaciGlobaliS.p.A.','66778899001','CremaIdratante'),
-('FornitureSanitarieS.p.A.','22334455667','Stampelle'),
-('MedicaProS.r.l.','33445566778','GelAntibatterico'),
-('FarmaceuticiS.p.A.','01234567890','AntibioticoGenerico'),
-('SaluteeBenessereS.r.l.','09876543210','Cortisone'),
-('DistribuzioneMedicaS.r.l.','11223344556','Loratadina'),
-('FarmaciGlobaliS.p.A.','66778899001','Ranitidina'),
-('FornitureSanitarieS.p.A.','22334455667','AcidoAcetilsalicilico'),
-('MedicaProS.r.l.','33445566778','Clopidogrel'),
-('FarmaceuticiS.p.A.','01234567890','Simeticone'),
-('SaluteeBenessereS.r.l.','09876543210','Diosmectite'),
-('DistribuzioneMedicaS.r.l.','11223344556','Ferrograd'),
-('FarmaciGlobaliS.p.A.','66778899001','Cardioaspirina'),
-('FornitureSanitarieS.p.A.','22334455667','Atorvastatina'),
-('MedicaProS.r.l.','33445566778','Losartan'),
-('FarmaceuticiS.p.A.','01234567890','Enalapril'),
-('SaluteeBenessereS.r.l.','09876543210','Bisoprololo'),
-('DistribuzioneMedicaS.r.l.','11223344556','Nifedipina'),
-('FarmaciGlobaliS.p.A.','66778899001','Amlodipina'),
-('FornitureSanitarieS.p.A.','22334455667','Valproato'),
-('MedicaProS.r.l.','33445566778','Sertralina'),
-('FarmaceuticiS.p.A.','01234567890','Alprazolam'),
-('SaluteeBenessereS.r.l.','09876543210','Diazepam'),
-('DistribuzioneMedicaS.r.l.','11223344556','Carbamazepina'),
-('FarmaciGlobaliS.p.A.','66778899001','Lamotrigina'),
-('FornitureSanitarieS.p.A.','22334455667','Lisinopril'),
-('MedicaProS.r.l.','33445566778','Metoprololo'),
-('FarmaceuticiS.p.A.','01234567890','Fenofibrato'),
-('SaluteeBenessereS.r.l.','09876543210','Rosuvastatina'),
-('DistribuzioneMedicaS.r.l.','11223344556','Warfarin'),
-('FarmaciGlobaliS.p.A.','66778899001','Eparina'),
-('FornitureSanitarieS.p.A.','22334455667','InsulinaGlargine'),
-('MedicaProS.r.l.','33445566778','Metformina'),
-('FarmaceuticiS.p.A.','01234567890','Gliclazide'),
-('SaluteeBenessereS.r.l.','09876543210','Saxagliptin'),
-('DistribuzioneMedicaS.r.l.','11223344556','SiringheSterili'),
-('FarmaciGlobaliS.p.A.','66778899001','GuantiSterili'),
-('FornitureSanitarieS.p.A.','22334455667','TermometroaMercurio'),
-('MedicaProS.r.l.','33445566778','CremaSolare'),
-('FarmaceuticiS.p.A.','01234567890','BendaggiElastici'),
-('SaluteeBenessereS.r.l.','09876543210','CerottiCicatrizzanti'),
-('DistribuzioneMedicaS.r.l.','11223344556','Pulsossimetro'),
-('FarmaciGlobaliS.p.A.','66778899001','SiringheSterili'),
-('FornitureSanitarieS.p.A.','22334455667','GuantiSterili');
+('FarmaciGlobaliS.p.A.','66778899002','CremaIdratante'),
+('FornitureSanitarieS.p.A.','22334455668','Stampelle'),
+('MedicaProS.r.l.','33445566779','GelAntibatterico'),
+('FarmaceuticiS.p.A.','98765432102','AntibioticoGenerico'),
+('SaluteeBenessereS.r.l.','09876543212','Cortisone'),
+('DistribuzioneMedicaS.r.l.','11223344557','Loratadina'),
+('FarmaciGlobaliS.p.A.','66778899003','Ranitidina'),
+('FornitureSanitarieS.p.A.','22334455669','AcidoAcetilsalicilico'),
+('MedicaProS.r.l.','33445566780','Clopidogrel'),
+('FarmaceuticiS.p.A.','98765432103','Simeticone'),
+('SaluteeBenessereS.r.l.','09876543213','Diosmectite'),
+('DistribuzioneMedicaS.r.l.','11223344558','Ferrograd'),
+('FarmaciGlobaliS.p.A.','66778899004','Cardioaspirina'),
+('FornitureSanitarieS.p.A.','22334455670','Atorvastatina'),
+('MedicaProS.r.l.','33445566781','Losartan'),
+('FarmaceuticiS.p.A.','98765432104','Enalapril'),
+('SaluteeBenessereS.r.l.','09876543214','Bisoprololo'),
+('DistribuzioneMedicaS.r.l.','11223344559','Nifedipina'),
+('FarmaciGlobaliS.p.A.','66778899005','Amlodipina'),
+('FornitureSanitarieS.p.A.','22334455671','Valproato'),
+('MedicaProS.r.l.','33445566782','Sertralina'),
+('FarmaceuticiS.p.A.','98765432105','Alprazolam'),
+('SaluteeBenessereS.r.l.','09876543215','Diazepam'),
+('DistribuzioneMedicaS.r.l.','11223344560','Carbamazepina'),
+('FarmaciGlobaliS.p.A.','66778899006','Lamotrigina'),
+('FornitureSanitarieS.p.A.','22334455672','Lisinopril'),
+('MedicaProS.r.l.','33445566783','Metoprololo'),
+('FarmaceuticiS.p.A.','98765432106','Fenofibrato'),
+('SaluteeBenessereS.r.l.','09876543216','Rosuvastatina'),
+('DistribuzioneMedicaS.r.l.','11223344561','Warfarin'),
+('FarmaciGlobaliS.p.A.','66778899007','Eparina'),
+('FornitureSanitarieS.p.A.','22334455673','InsulinaGlargine'),
+('MedicaProS.r.l.','33445566784','Metformina'),
+('FarmaceuticiS.p.A.','98765432107','Gliclazide'),
+('SaluteeBenessereS.r.l.','09876543217','Saxagliptin'),
+('DistribuzioneMedicaS.r.l.','11223344562','SiringheSterili'),
+('FarmaciGlobaliS.p.A.','66778899008','GuantiSterili'),
+('FornitureSanitarieS.p.A.','22334455674','TermometroaMercurio'),
+('MedicaProS.r.l.','33445566785','CremaSolare'),
+('FarmaceuticiS.p.A.','98765432108','BendaggiElastici'),
+('SaluteeBenessereS.r.l.','09876543218','CerottiCicatrizzanti'),
+('DistribuzioneMedicaS.r.l.','11223344563','Pulsossimetro'),
+('FarmaciGlobaliS.p.A.','66778899009','SiringheSterili'),
+('FornitureSanitarieS.p.A.','22334455675','GuantiSterili');
 
 
-INSERT INTO Servizi_vari(nome_servizio,giorno,badge_farmacista,fascia_oraria,costo)VALUES
+INSERT INTO Servizi_vari(nome_servizio,giorno,badge_farmacista,fascia_orario,costo)VALUES
 ('orecchini','lunedì',1003,'08:00-12:00',20.00),
 ('vaccinazioni','martedì',1005,'13:00-17:00',25.00),
 ('tamponi','mercoledì',1006,'08:00-12:00',15.00),
 ('consiglio_medico','giovedì',1007,'13:00-17:00',30.00),
 ('analisi_terapia','venerdì',1008,'08:00-12:00',40.00),
 ('analisi_medicinali','sabato',1009,'08:00-12:00',35.00),
-('analisi_dietistica','lunedì',1010,'13:00-17:00',50.00),
-('orecchini','martedì',1011,'08:00-12:00',20.00),
-('vaccinazioni','mercoledì',1012,'13:00-17:00',25.00),
-('tamponi','giovedì',1013,'08:00-12:00',15.00),
-('consiglio_medico','venerdì',1014,'13:00-17:00',30.00),
-('analisi_terapia','sabato',1015,'08:00-12:00',40.00);
+('analisi_dietistica','lunedì',1010,'13:00-17:00',50.00);
+--('orecchini','martedì',1011,'08:00-12:00',20.00),
+--('vaccinazioni','mercoledì',1012,'13:00-17:00',25.00),
+--('tamponi','giovedì',1013,'08:00-12:00',15.00),
+--('consiglio_medico','venerdì',1014,'13:00-17:00',30.00),
+--('analisi_terapia','sabato',1015,'08:00-12:00',40.00);
 
 
-INSERT INTO Clienti(nome,cognome,codice_fiscale,età)VALUES
+INSERT INTO Clienti(nome,cognome,codice_fiscale,eta)VALUES
 ('Alessandro','Rossi','RSSLSS80A01H501B',18),
 ('Giulia','Bianchi','BNCGLL95B01H501X',22),
 ('Marco','Verdi','VRDMRC70C01H501Q',25),
@@ -304,5 +310,3 @@ INSERT INTO Prenotazioni (id_prenotazione, nome_servizio, giorno, orario, cf_cli
 (7008, 'vaccinazioni', '2024-09-12', '14:00:00', 'RZZLCA74I01H501K'),
 (7009, 'tamponi', '2024-09-13', '09:00:00', 'BRBSRA81L01H501C'),
 (7010, 'consiglio_medico', '2024-09-16', '16:00:00', 'RMNNDR90M01H501M');
-
-

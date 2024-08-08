@@ -17,4 +17,3 @@ set(SOURCE_FILES
 add_executable(db_farmacia ${SOURCE_FILES})
 
 target_link_libraries(db_farmacia PRIVATE pq)
-
