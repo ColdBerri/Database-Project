@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS Contratti (
     cognome VARCHAR(64) NOT NULL,
     numero_contratto INT PRIMARY KEY,
     codice_fiscale VARCHAR(16) NOT NULL,
-    data_nascita DATE NOT NULL,
+    data_nascita DATE NOT NULL, 
     tipologia_contratto VARCHAR(64) NOT NULL,
     inizio_contratto DATE NOT NULL,
     termine_contratto DATE,
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS Registro_Contabile (
     guadagno_vendite DECIMAL(10, 2) NOT NULL,
     guadagno_altre_attivita DECIMAL(10, 2) NOT NULL,
     mese_e_anno DATE PRIMARY KEY
-); -- da rivedere 
+); -- da rivedere credo sia meglio une registro delle spese dipendenti e creare una query che unisce spese e guadagni per fare bilancio
 
 CREATE TYPE tipo_prodotto AS ENUM ('farmaco', 'integratore', 'cosmetico', 'attrezzatura medica', 'altro');
 
@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS Bolla_Acquisto (
     data_documento DATE NOT NULL,
     FOREIGN KEY (id_prodotto) REFERENCES Prodotti(id_prodotto),
     FOREIGN KEY (nome_ditta) REFERENCES Fornitori(nome_ditta)
-);--da rivedere
+);--da rivedere direi inutile aggiungere attributi a ordini piuttosto
 
 CREATE TABLE IF NOT EXISTS Servizi_vari (
     nome_servizio VARCHAR(128) NOT NULL UNIQUE,
@@ -128,12 +128,10 @@ CREATE TABLE IF NOT EXISTS Prenotazioni (
 
 CREATE TABLE IF NOT EXISTS Ricetta (
     id_ricetta INT PRIMARY KEY,
-    dottore VARCHAR(64) NOT NULL,
-    nome_cliente VARCHAR(64) NOT NULL,  
+    dottore VARCHAR(64) NOT NULL,  
     codice_fiscale VARCHAR(16) NOT NULL,
-    eta INT NOT NULL,
     FOREIGN KEY (codice_fiscale) REFERENCES Clienti(codice_fiscale)
-);
+);--dati ok, tolto nome cliente ed età, ridondanze inutili
 
 CREATE TABLE IF NOT EXISTS Vendite (
     id_vendita INT PRIMARY KEY,
@@ -147,13 +145,6 @@ CREATE TABLE IF NOT EXISTS Vendite (
     FOREIGN KEY (id_prodotto) REFERENCES Prodotti(id_prodotto)
 ); --dati ok 
 
-CREATE TABLE IF NOT EXISTS Registro_Vendite(
-    id_vendita INT NOT NULL,
-    id_prodotto INT NOT NULL,
-    PRIMARY KEY (id_vendita, id_prodotto),
-    FOREIGN KEY (id_vendita) REFERENCES Vendite(id_vendita),
-    FOREIGN KEY (id_prodotto) REFERENCES Prodotti(id_prodotto)
-);--inutile vendite vale già come registro vendite
 
 CREATE TABLE IF NOT EXISTS Magazzino (
     id_prodotto INT NOT NULL,
@@ -172,4 +163,4 @@ CREATE TABLE IF NOT EXISTS Bugiardino (
     isfans BOOLEAN NOT NULL, --che cazz vuol dire??
     --modalita_assunzione VARCHAR(128) NOT NULL,--non serve questa ridondanza perchè gia scritto nella tabella prodotti
     FOREIGN KEY (id_prodotto) REFERENCES Prodotti(id_prodotto)
-);--dati quasi ok 
+);--dati ok 
